@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_light">
+
+    <EditText
+        android:id="@+id/eSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_search"
+        android:layout_marginHorizontal="30dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="10dp"
+        android:layout_marginTop="15dp"
+        android:textSize="17sp"
+        android:hint="Search"
+        android:singleLine="true"
+        android:maxLength="20"
+        android:textColor="@color/black_light"
+        />
+    <GridView
+        android:id="@+id/moviesList"
+        android:layout_below="@+id/eSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:columnWidth="90dp"
+        android:horizontalSpacing="10dp"
+        android:verticalSpacing="10dp"
+        android:gravity="center"
+        android:stretchMode="columnWidth"
+        android:layout_margin="15dp"
+        />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="17dp"
+        android:visibility="gone"
+        />
+</RelativeLayout>
