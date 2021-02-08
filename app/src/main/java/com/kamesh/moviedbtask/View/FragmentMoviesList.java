@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -58,6 +59,29 @@ public class FragmentMoviesList extends Fragment implements PresenterMovieList.M
         setHasOptionsMenu(true);
     }
 
+
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_movie_list,container,false);
+
+        presenter = new PresenterMovieList(getContext(),this);
+
+        setWidgets();
+
+
+        arrayList = new ArrayList<>();
+        movieAdapter = new MovieAdapter(getContext(),arrayList,this);
+        gridMoviesList.setAdapter(movieAdapter);
+
+
+
+        return view;
+
+    }
+
+    /*
+    *  Create Menu For Sorting Option */
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.movies_sort_menu,menu);
@@ -81,23 +105,7 @@ public class FragmentMoviesList extends Fragment implements PresenterMovieList.M
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_movie_list,container,false);
 
-        presenter = new PresenterMovieList(getContext(),this);
-
-        setWidgets();
-
-
-        arrayList = new ArrayList<>();
-        movieAdapter = new MovieAdapter(getContext(),arrayList,this);
-        gridMoviesList.setAdapter(movieAdapter);
-
-
-        return view;
-
-    }
 
     /*
     * set widgets
@@ -110,10 +118,12 @@ public class FragmentMoviesList extends Fragment implements PresenterMovieList.M
 
         eSearch.addTextChangedListener(this);
 
-
     }
 
 
+    /*
+    * Call Service For get Movies Details
+    * */
     @Override
     public void onStart() {
         super.onStart();

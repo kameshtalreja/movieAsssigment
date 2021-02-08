@@ -27,10 +27,32 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
 
     MoviesObject.Result movieDetails;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
+
+        setWidgets();
+
+
+        /*
+        * getting data form bundle
+        * */
+        if(getIntent().getSerializableExtra(Constants.MOVIES_DETAILS) != null){
+            movieDetails = (MoviesObject.Result) getIntent().getSerializableExtra(Constants.MOVIES_DETAILS);
+            /*
+            * Set the data to widgets */
+            setData();
+        }
+
+
+
+    }
+
+    /*
+    * assign id to Widgets */
+    private void setWidgets() {
 
         imgBack = findViewById(R.id.imgBack);
         imgBackground = findViewById(R.id.imgBackground);
@@ -42,19 +64,11 @@ public class MovieDetailActivity extends AppCompatActivity implements View.OnCli
 
         imgBack.setOnClickListener(this);
 
-
-        if(getIntent().getSerializableExtra(Constants.MOVIES_DETAILS) != null){
-            movieDetails = (MoviesObject.Result) getIntent().getSerializableExtra(Constants.MOVIES_DETAILS);
-
-            /*
-            * Set the data to widgets */
-            setData();
-        }
-
-
-
     }
 
+    /*
+    * setting data form bundle
+    * */
     private void setData() {
 
         if(movieDetails.getPosterPath() != null){
